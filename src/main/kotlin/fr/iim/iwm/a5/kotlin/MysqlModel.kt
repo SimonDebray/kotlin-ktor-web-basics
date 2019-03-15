@@ -52,7 +52,7 @@ class MysqlModel(url: String, user: String?, password: String?) : Model{
 
     override fun addArticle(title: String, textContent: String): Any? {
         connectionPool.use { connection ->
-            connection.prepareStatement("INSERT INTO articles (title, text) VALUE (?, ?);").use { stmt ->
+            connection.prepareStatement("INSERT INTO articles (title, text) VALUES (?, ?);").use { stmt ->
                 stmt.setString(1, title)
                 stmt.setString(2, textContent)
 
@@ -88,7 +88,7 @@ class MysqlModel(url: String, user: String?, password: String?) : Model{
 
     override fun addComments (id: Int, textComment: String): Any? {
         connectionPool.use { connection ->
-            connection.prepareStatement("INSERT INTO comments (article_id, text) VALUE (?, ?);").use { stmt ->
+            connection.prepareStatement("INSERT INTO comments (article_id, text) VALUES (?, ?);").use { stmt ->
                 stmt.setInt(1, id)
                 stmt.setString(2, textComment)
 
